@@ -9,26 +9,32 @@ class InputCommand
 {
 public:
     InputCommand() = default;
-    InputCommand(bool bInputValue) : InputValue(bInputValue) {}
     virtual ~InputCommand() = default;
-    virtual void Execute(Controller* Controller, void(Controller::* InputCallback)(bool)) const;
-
-protected:
-    bool InputValue = true;
+    virtual void Execute(Controller* Controller) const {}
 };
 
 class MoveForwardInputCommand : public InputCommand
 {
 public:
     MoveForwardInputCommand() = default;
-    MoveForwardInputCommand(bool bMoveForward) : InputCommand(bMoveForward) {}
+    MoveForwardInputCommand(bool bMoveForward) : InputValue(bMoveForward) {}
+
+    virtual void Execute(Controller* Controller) const override;
+
+protected:
+    bool InputValue = true;
 };
 
 class MoveRightInputCommand : public InputCommand
 {
 public:
     MoveRightInputCommand() = default;
-    MoveRightInputCommand(bool bMoveRight) : InputCommand(bMoveRight) {}
+    MoveRightInputCommand(bool bMoveRight) : InputValue(bMoveRight) {}
+
+    virtual void Execute(Controller* Controller) const override;
+
+protected:
+    bool InputValue = true;
 };
 
 class InputComponent

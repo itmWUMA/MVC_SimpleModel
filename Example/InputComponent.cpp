@@ -2,11 +2,19 @@
 #include <iostream>
 #include "Controller.h"
 
-void InputCommand::Execute(Controller* Controller, void(Controller::* InputCallback)(bool)) const
+void MoveForwardInputCommand::Execute(Controller* Controller) const
 {
-    if (InputCallback)
+    if (Controller)
     {
-        (Controller->*InputCallback)(InputValue);
+        Controller->OnMoveForward(InputValue);
+    }
+}
+
+void MoveRightInputCommand::Execute(Controller* Controller) const
+{
+    if (Controller)
+    {
+        Controller->OnMoveRight(InputValue);
     }
 }
 

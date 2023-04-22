@@ -46,12 +46,12 @@ void Controller::Possess()
 
         if (MoveForwardCommand)
         {
-            MoveForwardCommand->Execute(this, &Controller::OnMoveForward);
+            MoveForwardCommand->Execute(this);
         }
 
         if (MoveRightCommand)
         {
-            MoveRightCommand->Execute(this, &Controller::OnMoveRight);
+            MoveRightCommand->Execute(this);
         }
     }
 
