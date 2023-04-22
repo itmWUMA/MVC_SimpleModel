@@ -1,14 +1,9 @@
 ﻿#include "RenderComponent.h"
-#include <iostream>
-#include <Windows.h>
-using namespace std;
+#include "Map.h"
 
-void RenderComponent::Render(char Character) const
+void RenderComponent::Render(int Row, int Col, char Character) const
 {
-    cout << Character;
-}
-
-void RenderComponent::Clear() const
-{
-    system("cls");
+    Map* MapInstance = Map::Get();
+    MapInstance->SetRenderMapElement(Row, Col, Character);
+    MapInstance->Render();
 }

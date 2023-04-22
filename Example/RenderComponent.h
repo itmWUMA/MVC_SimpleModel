@@ -3,6 +3,5 @@
 class RenderComponent
 {
 public:
-    void Render(char Character) const;
-    void Clear() const;
+    void Render(int Row, int Col, char Character) const;
 };

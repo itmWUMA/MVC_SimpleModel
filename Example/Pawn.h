@@ -14,7 +14,7 @@ public:
     void ChangeMesh(char NewMesh);
     void Move(int OffsetX, int OffsetY) const;
     int GetCurrentStep() const;
-    void Render() const;
+    void GetCurrentPosition(int& OutPosX, int& OutPosY) const;
 
 private:
     char Mesh = 'A';

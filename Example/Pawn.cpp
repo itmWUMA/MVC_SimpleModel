@@ -35,7 +35,9 @@ void Pawn::Move(int OffsetX, int OffsetY) const
             PlayerState->SetY(NewPosY);
         }
 
-        Render();
+        int OutCurPosX = 0, OutCurPosY = 0;
+        GetCurrentPosition(OutCurPosX, OutCurPosY);
+        RenderComp->Render(OutCurPosX, OutCurPosY, Mesh);
     }
 }
 
@@ -44,27 +46,11 @@ int Pawn::GetCurrentStep() const
     return PlayerState ? PlayerState->GetStep() : 0;
 }
 
-void Pawn::Render() const
+void Pawn::GetCurrentPosition(int& OutPosX, int& OutPosY) const
 {
-    RenderComp->Clear();
-
-    const int CurPosX = PlayerState->GetX();
-    const int CurPosY = PlayerState->GetY();
-
-    const Map* MapInstance = Map::Get();
-    for (int Row = 0; Row < MapInstance->Length; ++Row)
+    if (PlayerState)
     {
-        for (int Col = 0; Col < MapInstance->Width; ++Col)
-        {
-            if (CurPosX == Row && CurPosY == Col)
-            {
-                RenderComp->Render(Mesh);
-            }
-            else
-            {
-                RenderComp->Render(' ');
-            }
-        }
-        RenderComp->Render('\n');
+        OutPosX = PlayerState->GetX();
+        OutPosY = PlayerState->GetY();
     }
 }
